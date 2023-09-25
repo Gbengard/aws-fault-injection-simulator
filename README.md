@@ -18,13 +18,13 @@ Please note that this guide assumes deployment in the us-east-1 region. If deplo
 
 4. Under the **AMI** section, select "Browse more AMIs".
 
-   ![Untitled](images/Untitled1.png)
+   ![Untitled](images/Untitled.png)
 
 5. Obtain the AMI ID for the Bitnami Nginx image in the region you are using. You can find the appropriate AMI ID on the following page: [Bitnami Nginx AMIs](https://bitnami.com/stack/nginx/cloud/aws/amis)
 
    For example, if using the Northern Virginia region, copy the AMI ID and paste it in the search bar within the EC2 console. Then, navigate to the Community AMIs tab and select the image.
 
-   ![Untitled](images/Untitled2.png)
+   ![Untitled](images/Untitled1.png)
 
 6. Keep the **Instance type** as "t2.micro".
 
@@ -36,7 +36,7 @@ Please note that this guide assumes deployment in the us-east-1 region. If deplo
 
 10. Under **Firewall (security groups)**, select "Create security group" and name it "nginx". You can keep the description as is.
 
-    ![Untitled](images/Untitled3.png)
+    ![Untitled](images/Untitled2.png)
 
 11. Remove the default SSH rule by clicking on "Remove".
 
@@ -44,11 +44,11 @@ Please note that this guide assumes deployment in the us-east-1 region. If deplo
 
 13. Set the **Type** to "HTTP" and the **Source type** to "Anywhere".
 
-    ![Untitled](images/Untitled4.png)
+    ![Untitled](images/Untitled3.png)
 
 14. Finally, adjust the "Number of instances" to 2 to create two instances for our simulation.
 
-	![Untitled](images/Untitled5.png)
+	![Untitled](images/Untitled4.png)
 
 15.	Proceed with the default settings and click on the "Launch instance" button.
 
@@ -56,11 +56,11 @@ Please note that this guide assumes deployment in the us-east-1 region. If deplo
 
 17.	You will notice that two instances are in the process of starting.
 
-	![Untitled](images/Untitled6.png)
+	![Untitled](images/Untitled5.png)
 
 18.	After a few minutes, you should be able to access both instances' public IPs using your browser. Ensure that you use `http://` instead of `https://`. You will be greeted with the Nginx welcome page.
 
-	![Untitled](images/Untitled7.png)
+	![Untitled](images/Untitled6.png)
 
 ## Stage 2 - Creating the Target Group
 
@@ -68,7 +68,7 @@ Please note that this guide assumes deployment in the us-east-1 region. If deplo
 
 2.	Access the "Target Groups" section and click on the "Create target group" button.
 
-	![Untitled](images/Untitled8.png)
+	![Untitled](images/Untitled7.png)
 
 3.	Keep the "Instances" option selected.
 
@@ -78,7 +78,7 @@ Please note that this guide assumes deployment in the us-east-1 region. If deplo
 
 6.	On the following page, select both instances that were created earlier, and click on the "Include as pending below" button.
 
-	![Untitled](images/Untitled9.png)
+	![Untitled](images/Untitled8.png)
 
 7.	This action adds both instances to the Target Group, and their health checks will be pending. The health check, which was set on the previous page, is an HTTP call to the `/` URI, expecting a `200` response.
 
@@ -94,7 +94,7 @@ To create the Application Load Balancer for your project, follow these steps:
 
 3. Click on the **Create load balancer** button.
 
-   ![Untitled](images/Untitled10.png)
+   ![Untitled](images/Untitled9.png)
 
 4. In the **Load balancer types** section, select "Application Load Balancer".
 
@@ -102,15 +102,15 @@ To create the Application Load Balancer for your project, follow these steps:
 
 6. In the **Network mapping** section, select all available mappings. Leave the subnet as default unless you have a specific VPC configuration.
 
-   ![Untitled](images/Untitled11.png)
+   ![Untitled](images/Untitled10.png)
 
 7. In the **Security groups** section, choose the "nginx" Security Group that you previously created in the EC2 instances console.
 
-   ![Untitled](images/Untitled12.png)
+   ![Untitled](images/Untitled11.png)
 
 8. In the **Listeners and routing** section, change the **Default action** to the Target Group created in the previous step.
 
-   ![Untitled](images/Untitled13.png)
+   ![Untitled](images/Untitled12.png)
 
 9. Leave all other settings as default and click on the **Create load balancer** button.
 
@@ -118,23 +118,23 @@ To create the Application Load Balancer for your project, follow these steps:
 
 11. Locate and click on the name of your load balancer.
 
-    ![Untitled](images/Untitled14.png)
+    ![Untitled](images/Untitled13.png)
 
 12. Take note of the **DNS name** as we will use it for testing.
 
-    ![Untitled](images/Untitled15.png)
+    ![Untitled](images/Untitled14.png)
 
 13. While waiting for the provisioning, you can confirm that your instances are healthy and ready to receive traffic by clicking on the Target Group under **Listeners**.
 
-    ![Untitled](images/Untitled16.png)
+    ![Untitled](images/Untitled15.png)
 
 14. You should see both instances listed as "Registered targets" with either the `initial` or `healthy` status.
 
-    ![Untitled](images/Untitled17.png)
+    ![Untitled](images/Untitled16.png)
 
 15. To test the load balancer, open your browser and visit the Load Balancer DNS. You should see the Nginx welcome page.
 
-    ![Untitled](images/Untitled18.png)
+    ![Untitled](images/Untitled17.png)
 
 16. At this stage, it is not necessary to determine which instance serves the traffic. The load balancer handles the distribution of traffic between them.
 

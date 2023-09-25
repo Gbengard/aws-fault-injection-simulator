@@ -150,7 +150,7 @@ To create an IAM role for the Fault Injection Simulator (FIS), follow these step
 
 4. Under **Use cases for other AWS services**, choose "FIS" and select the "AWSFaultInjectionSimulatorEC2Access" option.
 
-   ![Untitled](images/Untitled19.png)
+   ![Untitled](images/Untitled18.png)
 
 5. Click **Next** to proceed.
 
@@ -162,15 +162,15 @@ To create an IAM role for the Fault Injection Simulator (FIS), follow these step
 
 9. Back on the **Roles** page, search for and click on the newly created role.
 
-   ![Untitled](images/Untitled20.png)
+   ![Untitled](images/Untitled19.png)
 
 10. Click on **Add permissions**, then select **Attach policies**.
 
-    ![Untitled](images/Untitled21.png)
+    ![Untitled](images/Untitled20.png)
 
 11. Search for and select `AWSFaultInjectionSimulatorNetworkAccess`.
 
-    ![Untitled](images/Untitled22.png)
+    ![Untitled](images/Untitled21.png)
 
 12. Click **Add permissions** to attach the policy to the role.
 

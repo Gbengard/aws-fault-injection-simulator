@@ -36,8 +36,6 @@ Please note that this guide assumes deployment in the us-east-1 region. If deplo
 
 10. Under **Firewall (security groups)**, select "Create security group" and name it "nginx". You can keep the description as is.
 
-    ![Untitled](images/Untitled2.png)
-
 11. Remove the default SSH rule by clicking on "Remove".
 
 12. Click on "Add security group rule".
